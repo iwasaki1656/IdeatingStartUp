@@ -3,7 +3,7 @@ import { Github, Instagram, Linkedin, Mail, Recycle } from "lucide-react";
 
 import { Logo } from "./logo";
 
-const footerLinks = {
+const footerLinks: Record<string, { label: string; href: string | null }[]> = {
   Service: [
     { label: "Device Catalog", href: "/catalog" },
     { label: "My Page / Dashboard", href: "/dashboard" },
@@ -14,15 +14,22 @@ const footerLinks = {
     { label: "Our Mission", href: "/#vision" },
     { label: "Impact Tracker", href: "/#impact" },
     { label: "How It Works", href: "/#guide" },
-    { label: "Careers", href: "#" },
+    { label: "Careers", href: null },
   ],
   Support: [
-    { label: "Help Center", href: "#" },
-    { label: "WhatsApp Us", href: "#" },
-    { label: "Damage Protection", href: "#" },
-    { label: "Terms & Privacy", href: "#" },
+    { label: "Help Center", href: null },
+    { label: "WhatsApp Us", href: null },
+    { label: "Damage Protection", href: null },
+    { label: "Terms & Privacy", href: null },
   ],
 };
+
+const socialLinks = [
+  { icon: Mail, label: "Email", href: null },
+  { icon: Instagram, label: "Instagram", href: null },
+  { icon: Linkedin, label: "LinkedIn", href: null },
+  { icon: Github, label: "GitHub", href: null },
+];
 
 export function Footer() {
   return (
@@ -37,13 +44,12 @@ export function Footer() {
               computers to Malaysian students, closing the digital divide while
               fighting E-waste.
             </p>
-            <div className="mt-5 flex items-center gap-2">
+            <div className="mt-5 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-eco/30 bg-eco/10 px-3 py-1 text-xs font-medium text-eco">
                 <Recycle className="h-3.5 w-3.5" /> SDG 4 · Quality Education
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-eco/30 bg-eco/10 px-3 py-1 text-xs font-medium text-eco">
-                <Recycle className="h-3.5 w-3.5" /> SDG 12 · Responsible
-                Consumption
+                <Recycle className="h-3.5 w-3.5" /> SDG 12 · Responsible Consumption
               </span>
             </div>
           </div>
@@ -56,12 +62,24 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-primary"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.href ? (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                      >
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <span
+                        title="Coming soon"
+                        className="inline-flex items-center gap-1.5 cursor-default text-sm text-muted-foreground/50"
+                      >
+                        {link.label}
+                        <span className="rounded-sm bg-white/5 px-1 py-0.5 text-[10px] font-medium text-muted-foreground/40">
+                          Soon
+                        </span>
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -75,18 +93,27 @@ export function Footer() {
             Built in Malaysia 🇲🇾
           </p>
           <div className="flex items-center gap-3 text-muted-foreground">
-            <a href="#" aria-label="Email" className="transition-colors hover:text-primary">
-              <Mail className="h-4 w-4" />
-            </a>
-            <a href="#" aria-label="Instagram" className="transition-colors hover:text-primary">
-              <Instagram className="h-4 w-4" />
-            </a>
-            <a href="#" aria-label="LinkedIn" className="transition-colors hover:text-primary">
-              <Linkedin className="h-4 w-4" />
-            </a>
-            <a href="#" aria-label="GitHub" className="transition-colors hover:text-primary">
-              <Github className="h-4 w-4" />
-            </a>
+            {socialLinks.map(({ icon: Icon, label, href }) =>
+              href ? (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="transition-colors hover:text-primary"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ) : (
+                <span
+                  key={label}
+                  title={`${label} — coming soon`}
+                  aria-label={`${label} — coming soon`}
+                  className="cursor-default opacity-30"
+                >
+                  <Icon className="h-4 w-4" />
+                </span>
+              )
+            )}
           </div>
         </div>
       </div>

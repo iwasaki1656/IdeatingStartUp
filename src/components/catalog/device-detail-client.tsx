@@ -30,6 +30,12 @@ export function DeviceDetailClient({ device }: { device: Device }) {
   const [activeImg, setActiveImg] = useState(0);
   const [duration, setDuration] = useState<"1" | "2">("2");
   const [warranty, setWarranty] = useState(true);
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  const handleAddToCart = () => {
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 3000);
+  };
 
   const monthlyWithDiscount =
     duration === "2" ? device.monthlyFeeRM : device.monthlyFeeRM + 5;
@@ -179,9 +185,23 @@ export function DeviceDetailClient({ device }: { device: Device }) {
               </span>
             </div>
 
-            <Button variant="neon" size="lg" className="mt-4 w-full">
-              <ShoppingCart className="h-4 w-4" />
-              Add to Cart
+            <Button
+              variant={addedToCart ? "eco" : "neon"}
+              size="lg"
+              className="mt-4 w-full transition-all"
+              onClick={handleAddToCart}
+            >
+              {addedToCart ? (
+                <>
+                  <CheckCircle2 className="h-4 w-4" />
+                  Added to Cart!
+                </>
+              ) : (
+                <>
+                  <ShoppingCart className="h-4 w-4" />
+                  Add to Cart
+                </>
+              )}
             </Button>
             {device.co2SavedKg > 0 && (
               <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-eco">

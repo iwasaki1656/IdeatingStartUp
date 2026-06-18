@@ -360,12 +360,14 @@ function PickupBookingDialog({
               Pickup booked!
             </h3>
             <p className="mt-1 text-sm text-muted-foreground">
-              {date &&
-                new Date(date).toLocaleDateString("en-MY", {
+              {date && (() => {
+                const [y, m, d] = date.split("-").map(Number);
+                return new Date(y, m - 1, d).toLocaleDateString("en-MY", {
                   weekday: "long",
                   day: "numeric",
                   month: "long",
-                })}{" "}
+                });
+              })()}{" "}
               at {time}
             </p>
             <p className="mt-1 text-xs text-muted-foreground">

@@ -87,7 +87,7 @@ export function DeviceCard({ device }: { device: Device }) {
           <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
             <Spec icon={Cpu} label={device.cpuFamily} />
             <Spec icon={MemoryStick} label={`${device.ramGB}GB`} />
-            <Spec icon={HardDrive} label={`${device.storageGB}GB`} />
+            <Spec icon={HardDrive} label={device.storageGB >= 1024 ? "1TB" : `${device.storageGB}GB`} />
           </div>
 
           {/* Tags */}

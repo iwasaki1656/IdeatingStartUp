@@ -53,6 +53,7 @@ function AssessmentSimulator() {
   const [year, setYear] = useState("");
   const [cpu, setCpu] = useState("");
   const [condition, setCondition] = useState("");
+  const [buybackChoice, setBuybackChoice] = useState<"cash" | "eco" | null>(null);
 
   const { buybackPrice, ecoPoints } = useMemo(
     () => calculateEstimate({ brand, cpu, year, condition }),
@@ -66,6 +67,7 @@ function AssessmentSimulator() {
     setYear("");
     setCpu("");
     setCondition("");
+    setBuybackChoice(null);
   };
 
   const canAdvance =
@@ -291,12 +293,32 @@ function AssessmentSimulator() {
                   </div>
 
                   <div className="mt-6 flex flex-col gap-2 sm:flex-row">
-                    <Button variant="neon" className="flex-1">
-                      Accept Cash Buyback
-                    </Button>
-                    <Button variant="eco" className="flex-1">
-                      Donate for Eco Points
-                    </Button>
+                    {buybackChoice ? (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="flex w-full flex-col items-center gap-2 rounded-xl border border-eco/30 bg-eco/[0.06] p-4 text-center"
+                      >
+                        <CheckCircle2 className="h-7 w-7 text-eco" />
+                        <p className="font-semibold text-eco">
+                          {buybackChoice === "cash" ? "Cash Buyback Accepted!" : "Eco Points Donation Submitted!"}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {buybackChoice === "cash"
+                            ? "Our team will contact you within 1 business day to arrange pickup and payment."
+                            : "Your eco-contribution is registered. Your tax-deductible certificate will be emailed shortly."}
+                        </p>
+                      </motion.div>
+                    ) : (
+                      <>
+                        <Button variant="neon" className="flex-1" onClick={() => setBuybackChoice("cash")}>
+                          Accept Cash Buyback
+                        </Button>
+                        <Button variant="eco" className="flex-1" onClick={() => setBuybackChoice("eco")}>
+                          Donate for Eco Points
+                        </Button>
+                      </>
+                    )}
                   </div>
                   <button
                     onClick={reset}

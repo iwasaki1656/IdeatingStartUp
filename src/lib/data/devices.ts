@@ -71,7 +71,7 @@ export const devices: Device[] = [
     stock: "Low Stock",
     stockCount: 4,
     cpu: "Apple M1 8-core",
-    cpuFamily: "Core i7",
+    cpuFamily: "Ryzen 7",
     ramGB: 8,
     storageGB: 256,
     storageType: "SSD",
