@@ -1,4 +1,4 @@
-import type { Device } from "./types";
+import type { Device } from "../types";
 
 // Unsplash-hosted laptop imagery (royalty-free) for the prototype catalog.
 const IMG = {

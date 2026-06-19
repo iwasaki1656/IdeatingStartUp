@@ -38,6 +38,37 @@
     --font-mono: "JetBrains Mono", monospace;
     --font-display: "Orbitron", system-ui, sans-serif;
   }
+
+  /* ── Light / White mode ─────────────────────────────────────── */
+  html.light {
+    --background: 210 40% 98%;
+    --foreground: 210 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 10%;
+
+    --primary: 188 80% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 25% 93%;
+    --secondary-foreground: 210 30% 15%;
+
+    --muted: 210 25% 93%;
+    --muted-foreground: 210 15% 45%;
+
+    --accent: 142 60% 38%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 82%;
+    --input: 210 20% 90%;
+    --ring: 188 80% 38%;
+  }
 }
 
 @layer base {
@@ -49,14 +80,84 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(34, 211, 238, 0.12), transparent),
-      radial-gradient(ellipse 60% 50% at 80% 110%, rgba(74, 222, 128, 0.08), transparent);
+    transition: background-color 0.3s ease, color 0.3s ease;
     background-attachment: fixed;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  html:not(.light) body {
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(34, 211, 238, 0.12), transparent),
+      radial-gradient(ellipse 60% 50% at 80% 110%, rgba(74, 222, 128, 0.08), transparent);
+  }
+  html.light body {
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(34, 211, 238, 0.06), transparent),
+      radial-gradient(ellipse 60% 50% at 80% 110%, rgba(74, 222, 128, 0.04), transparent);
+  }
   ::selection {
     @apply bg-primary/30 text-white;
+  }
+}
+
+/* ── Light mode overrides for dark-centric white/opacity utilities ── */
+/* These fix border-white/*, bg-white/*, hover:bg-white/* classes     */
+/* that become invisible against a light/white background.            */
+html.light {
+  /* ------- Borders: white/opacity → visible gray border ------- */
+  /* Covers border-white/5, border-white/10, border-white/15, etc.  */
+  [class*="border-white\/"] {
+    border-color: hsl(210 18% 80%) !important;
+  }
+
+  /* ------- Backgrounds: white/opacity → soft gray tint ------- */
+  /* Covers bg-white/5, bg-white/10, bg-white/[0.03], etc.          */
+  /* Use lighter shade for very faint ones (0.01-0.04 range)         */
+  [class*="bg-white/[0.01"],
+  [class*="bg-white/[0.02"],
+  [class*="bg-white/[0.03"],
+  [class*="bg-white/[0.04"] {
+    background-color: hsl(210 22% 94%) !important;
+  }
+  /* Standard and stronger tints */
+  [class*="bg-white/[0.05"],
+  [class*="bg-white/[0.06"],
+  [class*="bg-white/[0.07"],
+  [class*="bg-white/[0.08"],
+  [class*="bg-white/[0.09"],
+  [class*="bg-white/[0.1"] {
+    background-color: hsl(210 22% 91%) !important;
+  }
+  /* Percentage-based (bg-white/5, bg-white/10) */
+  [class*="bg-white\/5"],
+  [class*="bg-white\/10"],
+  [class*="bg-white\/15"] {
+    background-color: hsl(210 22% 91%) !important;
+  }
+
+  /* ------- Hover backgrounds ------- */
+  [class*="hover\:bg-white\/"]:hover {
+    background-color: hsl(210 20% 89%) !important;
+  }
+
+  /* ------- Glass utility classes ------- */
+  .glass {
+    border-color: hsl(210 20% 80%) !important;
+    background-color: rgba(255, 255, 255, 0.75) !important;
+  }
+  .glass-strong {
+    border-color: hsl(210 20% 74%) !important;
+    background-color: rgba(255, 255, 255, 0.88) !important;
+  }
+
+  /* ------- Amber cosmetic note box (too faint on light bg) ------- */
+  [class*="border-amber-400"] {
+    border-color: hsl(38 75% 60% / 0.5) !important;
+  }
+  [class*="bg-amber-400"] {
+    background-color: hsl(38 85% 92%) !important;
+  }
+  [class*="text-amber-200"] {
+    color: hsl(30 65% 35%) !important;
   }
 }
 
@@ -94,7 +195,7 @@
 
   /* Animated grid background */
   .bg-cyber-grid {
-    background-image: var(--tw-bg-grid, theme("backgroundImage.grid-pattern")));
+    background-image: var(--tw-bg-grid, theme("backgroundImage.grid-pattern"));
     background-size: 40px 40px;
   }
 

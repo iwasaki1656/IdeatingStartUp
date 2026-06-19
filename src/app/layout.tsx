@@ -4,6 +4,7 @@ import { Orbitron, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/shared/navbar";
 import { Footer } from "@/components/shared/footer";
+import { ThemeProvider } from "@/components/shared/theme-provider";
 import { cn } from "@/lib/utils";
 
 const spaceGrotesk = Space_Grotesk({
@@ -46,7 +47,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        "dark scroll-smooth",
+        "scroll-smooth",
         spaceGrotesk.variable,
         orbitron.variable,
         jetbrains.variable
@@ -54,10 +55,19 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-screen font-sans" suppressHydrationWarning>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          themes={["dark", "light"]}
+          enableSystem={false}
+          disableTransitionOnChange={false}
+        >
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
 }
+
