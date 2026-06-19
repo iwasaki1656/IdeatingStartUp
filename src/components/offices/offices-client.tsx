@@ -84,7 +84,10 @@ export function OfficesClient() {
             <div className="grid gap-6 lg:grid-cols-5">
               {/* Map */}
               <div className="lg:col-span-3">
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-card/40 p-4 backdrop-blur-sm">
+                <div
+                  className="relative overflow-hidden rounded-2xl border border-white/10 bg-card/40 backdrop-blur-sm"
+                  style={{ height: 500 }}
+                >
                   <MalaysiaMap
                     offices={officeLocations}
                     activeId={activeOffice?.id}

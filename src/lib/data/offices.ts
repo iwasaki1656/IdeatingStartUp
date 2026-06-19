@@ -1,9 +1,5 @@
 import type { OfficeLocation } from "../types";
 
-// Coordinates are normalized (0-100) percentages over the 800x450 SVG map.
-// Peninsular Malaysia spans roughly x:14-32%, y:10-65%
-// Sarawak spans roughly x:56-76%, y:35-55%
-// Sabah spans roughly x:70-90%, y:14-34%
 export const officeLocations: OfficeLocation[] = [
   {
     id: "of-kl",
@@ -22,8 +18,9 @@ export const officeLocations: OfficeLocation[] = [
       "Student Verification",
     ],
     liveInventory: 42,
-    mapX: 24,
-    mapY: 40,
+    lat: 3.1478,
+    lng: 101.6953,
+    mapX: 24, mapY: 40,
   },
   {
     id: "of-pj",
@@ -37,8 +34,9 @@ export const officeLocations: OfficeLocation[] = [
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80",
     services: ["Self-Pickup Available", "Repair Hub", "Student Verification"],
     liveInventory: 28,
-    mapX: 21,
-    mapY: 38,
+    lat: 3.0738,
+    lng: 101.5183,
+    mapX: 21, mapY: 38,
   },
   {
     id: "of-penang",
@@ -52,8 +50,9 @@ export const officeLocations: OfficeLocation[] = [
       "https://images.unsplash.com/photo-1597149959304-db2c83d2ab1f?auto=format&fit=crop&w=800&q=80",
     services: ["Self-Pickup Available", "Used Tech Buying Counter"],
     liveInventory: 19,
-    mapX: 19,
-    mapY: 17,
+    lat: 5.4385,
+    lng: 100.3147,
+    mapX: 19, mapY: 17,
   },
   {
     id: "of-jb",
@@ -67,8 +66,9 @@ export const officeLocations: OfficeLocation[] = [
       "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80",
     services: ["Self-Pickup Available", "Repair Hub", "Student Verification"],
     liveInventory: 33,
-    mapX: 25,
-    mapY: 62,
+    lat: 1.5355,
+    lng: 103.6736,
+    mapX: 25, mapY: 62,
   },
   {
     id: "of-ipoh",
@@ -82,8 +82,9 @@ export const officeLocations: OfficeLocation[] = [
       "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
     services: ["Self-Pickup Available", "Used Tech Buying Counter"],
     liveInventory: 14,
-    mapX: 20,
-    mapY: 27,
+    lat: 4.5696,
+    lng: 101.1288,
+    mapX: 20, mapY: 27,
   },
   {
     id: "of-kk",
@@ -97,8 +98,9 @@ export const officeLocations: OfficeLocation[] = [
       "https://images.unsplash.com/photo-1583416750470-965b2707b355?auto=format&fit=crop&w=800&q=80",
     services: ["Self-Pickup Available", "Student Verification"],
     liveInventory: 11,
-    mapX: 76,
-    mapY: 26,
+    lat: 5.9788,
+    lng: 116.0735,
+    mapX: 76, mapY: 26,
   },
   {
     id: "of-kuChan",
@@ -112,7 +114,8 @@ export const officeLocations: OfficeLocation[] = [
       "https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?auto=format&fit=crop&w=800&q=80",
     services: ["Self-Pickup Available", "Repair Hub"],
     liveInventory: 9,
-    mapX: 63,
-    mapY: 52,
+    lat: 1.5380,
+    lng: 110.3582,
+    mapX: 63, mapY: 52,
   },
 ];

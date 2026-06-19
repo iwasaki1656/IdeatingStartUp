@@ -97,7 +97,10 @@ export interface OfficeLocation {
   image: string;
   services: OfficeService[];
   liveInventory: number;
-  // normalized map coordinates (percentage on the Malaysia map svg)
+  // Real GPS coordinates for Leaflet map
+  lat: number;
+  lng: number;
+  // Legacy SVG map coords (kept for TS compat, unused)
   mapX: number;
   mapY: number;
 }
