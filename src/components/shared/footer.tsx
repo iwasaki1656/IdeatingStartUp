@@ -11,9 +11,9 @@ const footerLinks: Record<string, { label: string; href: string | null }[]> = {
     { label: "Sell / Donate a PC", href: "/buyback" },
   ],
   Company: [
-    { label: "Our Mission", href: "/#vision" },
-    { label: "Impact Tracker", href: "/#impact" },
-    { label: "How It Works", href: "/#guide" },
+    { label: "Our Mission", href: "/mission" },
+    { label: "Impact Tracker", href: "/impact" },
+    { label: "How It Works", href: "/how-it-works" },
     { label: "Careers", href: null },
   ],
   Support: [

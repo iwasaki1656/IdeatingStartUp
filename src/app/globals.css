@@ -97,6 +97,13 @@
   ::selection {
     @apply bg-primary/30 text-white;
   }
+
+  /* Force container to always fill the viewport — no max-width cap */
+  .container {
+    max-width: 100% !important;
+    padding-left: clamp(1.5rem, 5vw, 5rem) !important;
+    padding-right: clamp(1.5rem, 5vw, 5rem) !important;
+  }
 }
 
 /* ── Light mode overrides for dark-centric white/opacity utilities ── */
@@ -159,15 +166,25 @@ html.light {
   [class*="text-amber-200"] {
     color: hsl(30 65% 35%) !important;
   }
+
+  /* ------- Hero section: fix white gradient + faint subtitle on light bg ------- */
+  .hero-title {
+    background-image: linear-gradient(to bottom left, #0e7490, #22d3ee, #16a34a) !important;
+  }
+  .hero-subtitle {
+    color: hsl(210 15% 40%) !important;
+  }
 }
 
 @layer components {
   /* Neon gradient text */
   .text-gradient-neon {
-    @apply bg-gradient-to-r from-neon-blue via-neon-cyan to-eco bg-clip-text text-transparent;
+    @apply inline-block bg-gradient-to-r from-neon-blue via-neon-cyan to-eco bg-clip-text text-transparent;
+    padding-bottom: 0.25em;
   }
   .text-gradient-eco {
-    @apply bg-gradient-to-r from-eco via-eco-deep to-neon-cyan bg-clip-text text-transparent;
+    @apply inline-block bg-gradient-to-r from-eco via-eco-deep to-neon-cyan bg-clip-text text-transparent;
+    padding-bottom: 0.25em;
   }
 
   /* Glass card */

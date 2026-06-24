@@ -17,9 +17,9 @@ function Model() {
 
 export function ModelSection() {
   return (
-    <section className="w-full h-[100dvh] bg-[#030303] relative flex items-center justify-center overflow-hidden">
+    <section className="w-full h-[100dvh] bg-background relative flex items-center justify-center overflow-hidden">
       {/* Futuristic Background Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-[#030303] to-[#030303] z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-background to-background z-0" />
 
       <div className="absolute top-24 left-0 right-0 z-10 text-center pointer-events-none px-4 flex flex-col items-center">
         <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest border border-[#22d3ee]/30 rounded-full bg-[#22d3ee]/10 backdrop-blur-md uppercase">
@@ -29,10 +29,10 @@ export function ModelSection() {
           </span>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22d3ee] to-[#4ade80]">Next Generation</span>
         </div>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-bl from-[#ffffff] via-[#22d3ee] to-[#4ade80] tracking-tighter mb-6 drop-shadow-2xl">
+        <h1 className="hero-title text-5xl md:text-7xl lg:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-bl from-[#ffffff] via-[#22d3ee] to-[#4ade80] tracking-tighter mb-6 drop-shadow-2xl pb-4 overflow-visible">
           A Computer for Every One
         </h1>
-        <p className="text-slate-400 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto font-light tracking-wide">
+        <p className="hero-subtitle text-slate-400 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto font-light tracking-wide">
           Giving Technology a Second Life. Reduce Waste. Empower Students.
         </p>
       </div>
@@ -59,7 +59,7 @@ export function ModelSection() {
 
             <OrbitControls
               enablePan={false}
-              enableZoom={true}
+              enableZoom={false}
               minDistance={8}
               maxDistance={18}
               autoRotate={true}
@@ -72,7 +72,7 @@ export function ModelSection() {
       </div>
 
       {/* Bottom fade for seamless transition to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#030303] to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
     </section>
   );
 }
